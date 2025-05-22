@@ -1,0 +1,27 @@
+# Generar una sucesión: 2.0, 4.0, 6.0, 8.0, 10.0
+# usando acumulación flotante
+
+li x5, 0           # contador = 0
+li x6, 5           # límite = 5
+
+li f0, 2.0         # valor inicial
+li f1, 2.0         # incremento
+li f2, 0.0         # variable temporal para impresión
+
+loop:
+    bge x5, x6, fin      # si contador >= 5: terminar
+
+    # imprimir valor actual
+    fmv.s f10, f0
+    li a7, 2
+    ecall
+
+    # suma el siguiente término: f0 += 2.0
+    fadd.s f0, f0, f1
+
+    addi x5, x5, 1       # contador++
+    j loop
+
+fin:
+    li a7, 10
+    ecall

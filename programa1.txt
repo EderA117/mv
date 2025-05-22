@@ -1,0 +1,24 @@
+# Ejemplo 1: Suma de números
+# Este programa suma los números del 1 al 10 y muestra el resultado
+#
+# Registros utilizados:
+# a0 (x10): Resultado acumulado
+# a1 (x11): Contador
+# a2 (x12): Límite (10)
+
+suma_1_al_10:
+    li a0, 0       # Inicializa el acumulador a 0
+    li a1, 1       # Inicializa el contador a 1
+    li a2, 10      # Establece el límite a 10
+
+bucle:
+    add a0, a0, a1  # Suma el contador al acumulador
+    addi a1, a1, 1  # Incrementa el contador
+    ble a1, a2, bucle  # Si contador <= 10, continúa el bucle
+
+    li a7, 1       # Código para imprimir entero
+    ecall          # Llamada al sistema para imprimir
+    
+    li a7, 10      # Código para terminar programa
+    ecall          # Llamada al sistema para terminar
+

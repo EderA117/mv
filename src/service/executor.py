@@ -124,9 +124,9 @@ class InstructionExecutor:
 
         elif opcode == 'ecall':
             if self.sim.registers[17] == 1:
-                print(f"Output (int): {self.sim.registers[10]}")
+                self.sim.output_func(f"Output (int): {self.sim.registers[10]}")
             elif self.sim.registers[17] == 2:
-                print(f"Output (float): {self.sim.fregisters[10]:.4f}")  # fa0 = f10
+                self.sim.output_func(f"Output (float): {self.sim.fregisters[10]:.4f}")
             elif self.sim.registers[17] == 10:
                 self.sim.running = False
 

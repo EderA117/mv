@@ -1,0 +1,26 @@
+# Ejemplo 2: Factorial de un número
+# Este programa calcula el factorial de 5 (5!)
+#
+# Registros utilizados:
+# a0 (x10): Resultado acumulado
+# a1 (x11): Contador descendente
+# a2 (x12): Valor temporal
+
+factorial_5:
+    li a0, 1       # Inicializa el resultado a 1
+    li a1, 5       # Inicializa el contador a 5 (número a calcular factorial)
+
+factorial_loop:
+    beq a1, zero, factorial_done  # Si contador == 0, termina
+    mv a2, a0      # Guarda resultado actual en temporal
+    mul a0, a2, a1  # Multiplica resultado por contador
+    addi a1, a1, -1  # Decrementa contador
+    j factorial_loop  # Vuelve al inicio del bucle
+
+factorial_done:
+    li a7, 1       # Código para imprimir entero
+    ecall          # Llamada al sistema para imprimir
+    
+    li a7, 10      # Código para terminar programa
+    ecall          # Llamada al sistema para terminar
+

@@ -19,6 +19,7 @@ class RiscVGUI(tk.Tk):
         self.geometry("1200x900")
 
         self.sim = RiscVSimulator()
+        self.sim.output_func = self.print_output
 
         # --- Widgets ---
 
@@ -60,9 +61,17 @@ class RiscVGUI(tk.Tk):
         self.output_text.configure(state='disabled')
 
     def clear_output(self):
+        # Limpiar consola de salida
         self.output_text.configure(state='normal')
         self.output_text.delete(1.0, tk.END)
         self.output_text.configure(state='disabled')
+
+        # Limpiar tabla de registros
+        self.state_text.configure(state='normal')
+        self.state_text.delete(1.0, tk.END)
+        self.state_text.configure(state='disabled')
+
+        self.print_output("Consola y registros limpiados.")
 
     def load_program(self):
         code = self.code_text.get(1.0, tk.END)

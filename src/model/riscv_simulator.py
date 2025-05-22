@@ -22,6 +22,7 @@ class RiscVSimulator:
         self.running = False
         self.parser = InstructionParser(self)
         self.executor = InstructionExecutor(self)
+        self.output_func = print
 
     def load_program(self, program):
         self.registers = [0] * 32
